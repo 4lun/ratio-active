@@ -1,0 +1,57 @@
+body {
+	background: #fff;
+	color: #666;
+	font-family: sans-serif;
+	font-size: 14px;
+	margin: 0;
+	padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	margin: 0 0 15px;
+	padding: 0;
+	font-family: 'Share Tech', sans-serif;
+	font-weight: normal;
+	line-height: 1.4;
+	color: #111;
+}
+
+h1 { font-size: 48px; }
+h2 { font-size: 36px; border-bottom: 1px solid #ccc; padding-bottom: 5px; }
+h3 { font-size: 24px; }
+h4 { font-size: 22px; }
+h5 { font-size: 20px; }
+h6 { font-size: 18px; }
+
+p {
+	margin: 0 0 15px;
+	padding: 0;
+	line-height: 15;
+}
+
+.wrapper {
+	max-width: 1100px;
+	width: 100%;
+	margin: 0 auto;
+}
+
+.pad {
+	padding: 15px 20px;
+}
+
+.header, .section, .footer {
+	clear: both;
+	float: left;
+	width: 100%;
+	margin: 0 0 20px;
+}
+
+.sub-text {
+	display: block;
+	font-size: 14px;
+	font-family: sans-serif;
+	color: #666;
+	background: #eee;
+	padding: 5px 8px;
+	border-radius: 3px
+}
