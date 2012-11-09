@@ -1,19 +1,30 @@
 (function($){
 	$.fn.ratioActive = function(options) {
 		
+		// Configure default options
+		var settings = $.extend({
+			'transition': false,
+			'bind-resize': true
+		}, options);
+
+
 		var targets = $(this.selector);
 
 		// Avoid killing the browser on resize
-		var timeout;
-		$(window).bind('resize', function(){
-			clearTimeout(timeout);
-			timeout = setTimeout(function(){
-				trigger();
-			}, 150);
-		});
+		if(settings['bind-resize']) {
+			var timeout;
+			$(window).bind('resize', function(){
+				clearTimeout(timeout);
+				timeout = setTimeout(function(){
+					trigger();
+				}, 150);
+			});
+		}
 
 		// Fire trigger on initialize
-		trigger();
+		$(window).load(function() {
+			trigger();
+		});
 
 		// Trigger, where the magic happens
 		function trigger() {
@@ -32,14 +43,40 @@
 				// Split ratio
 				ratio = ratio.split(':');
 
-				// Set target width to 100% to determine avaliable space
-				target.width('100%');
+				var targetWidth = target.parent().width(),
+					targetHeight = targetWidth / (ratio[0] / ratio[1]);
 
-				// Set width and height based on resulting available width
-				target.width(target.width()).height(target.width() / (ratio[0] / ratio[1]));
-
+				if(!settings['transition']) {
+					// Transition disabled
+					prefix('transition', target, 'none')
+				} else {
+					if(settings['transition'] !== true) {
+						// Transition enabled
+						prefix('transition', target, 'all .6s ease');
+					} else {
+						// Transition enabled with custom value
+						prefix('transition', target, settings['transition']);
+					}
+				}
+				
+				target.width(targetWidth).height(targetHeight);
 			});
 
 		}
+
+		// Abstract function for vendor prefixes
+		function prefix(property, target, value) {
+			var prefixes = ['', '-ms-', '-o-', '-moz-', '-webkit-'],
+				loop = prefixes.length,
+				css = {};
+
+			while(loop--) {
+				css[prefixes[loop] + 'property'] = value;
+			}
+			target.css(css);
+		}
+
+		// Return object to enable chaining
+		return this;
 	}
 })(jQuery); 
