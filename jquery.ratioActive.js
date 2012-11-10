@@ -51,11 +51,11 @@
 					prefix('transition', target, 'none')
 				} else {
 					if(settings['transition'] !== true) {
-						// Transition enabled
-						prefix('transition', target, 'all .6s ease');
-					} else {
 						// Transition enabled with custom value
 						prefix('transition', target, settings['transition']);
+					} else {
+						// Transition enabled
+						prefix('transition', target, 'all .6s ease');
 					}
 				}
 				
@@ -71,8 +71,9 @@
 				css = {};
 
 			while(loop--) {
-				css[prefixes[loop] + 'property'] = value;
+				css[prefixes[loop] + property] = value;
 			}
+			console.log(css);
 			target.css(css);
 		}
 
