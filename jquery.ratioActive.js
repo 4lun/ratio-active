@@ -73,7 +73,7 @@
 			while(loop--) {
 				css[prefixes[loop] + property] = value;
 			}
-			console.log(css);
+			
 			target.css(css);
 		}
 
