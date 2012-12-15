@@ -1,6 +1,6 @@
 (function($){
 	$.fn.ratioActive = function(options) {
-		
+
 		// Configure default options
 		var settings = $.extend({
 			'transition': false,
@@ -22,9 +22,8 @@
 		}
 
 		// Fire trigger on initialize
-		$(window).load(function() {
-			trigger();
-		});
+		$(window).load(trigger);
+		if($.isReady) trigger;
 
 		// Trigger, where the magic happens
 		function trigger() {
@@ -58,7 +57,7 @@
 						prefix('transition', target, 'all .6s ease');
 					}
 				}
-				
+
 				target.width(targetWidth).height(targetHeight);
 			});
 
@@ -73,11 +72,11 @@
 			while(loop--) {
 				css[prefixes[loop] + property] = value;
 			}
-			
+
 			target.css(css);
 		}
 
 		// Return object to enable chaining
 		return this;
 	}
-})(jQuery); 
+})(jQuery);
